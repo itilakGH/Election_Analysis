@@ -8,6 +8,20 @@ file_to_load = os.path.join("Resources", "election_results.csv")
 # Creating a filename variable to a path (direct / indirect) to the file
 file_to_save = os.path.join("Performing_Analysis","election_analysis.txt")
 
+# Setting total to zero
+total_votes = 0
+
+# Listing candidates options list
+candidate_options = []
+
+# declaring an empty dictionary
+candidate_votes = {}
+
+# setting the winner tracking
+winning_candidate = ""
+winning_count = 0
+winning_percentage = 0
+
 # Open the elevtion result and read the file
 with open(file_to_load) as election_data:
 
@@ -15,10 +29,51 @@ with open(file_to_load) as election_data:
     file_reader = csv.reader(election_data)
 
     headers = next(file_reader)
-    print(headers)
+    #print(headers)
 
     for row in file_reader:
-       print(row)
+        total_votes = total_votes + 1
+        # reading the candidates in each row
+        candidate_name = row[2]
+        
+
+        if candidate_name not in candidate_options:
+        # adding candidates to the list of options
+            candidate_options.append(candidate_name)
+
+            # counting begins from 0
+            candidate_votes[candidate_name] = 0
+
+        # adding votes one by one to the candidate's count
+        candidate_votes[candidate_name] = candidate_votes[candidate_name] + 1
+
+for candidate,value in candidate_votes.items():
+        
+    percentage = value/total_votes*100
+    votes = candidate_votes[candidate]
+    # printing the result
+    print(f"{candidate}: {percentage:.2f}% ({value:,})\n")
+
+    
+
+          
+
+    # Determine winning vote count and candidate
+    # 1. Determine if the votes are greater than the winning count.
+    if (votes > winning_count) and (percentage > winning_percentage):
+        # 2. If true then set winning_count = votes and winning_percent = vote_percentage.
+        winning_count = votes
+        winning_percentage = percentage
+        # 3. Set the winning_candidate equal to the candidate's name.
+        winning_candidate = candidate
+
+winning_candidate_summary = (
+    f"-------------------------\n"
+    f"Winner: {winning_candidate}\n"
+    f"Winning Vote Count: {winning_count:,}\n"
+    f"Winning Percentage: {winning_percentage:.2f}%\n"
+    f"-------------------------\n")
+print(winning_candidate_summary)
 
 
 
