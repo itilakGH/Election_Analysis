@@ -29,11 +29,12 @@ Winning Percentage: 73.81%
 
 ## Challenge overview
 Had to use for loops and conditional statements to calculate the voter turnout for each county as well as the percentage of votes each county contributed to the election. Then, had to determine which county had the largest turnout. The results should be saved to  election_results.txt file and should be printed to the output terminal correctly as well.
+
 ## Challenge summary 
+
 County Votes:
 Jefferson: 10.5% (38,855)
 Denver: 82.8% (306,055)
 Arapahoe: 6.7% (24,801)
 
--------------------------
 Largest County Turnout: Denver 
